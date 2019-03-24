@@ -6,7 +6,7 @@
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  <title>Your page title here :)</title>
+  <title>A fun website using borde api</title>
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -19,8 +19,12 @@
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
   <!--jQuery to make easier http calls-->
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+  <script>
+    src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+  </script>
 
   <!--Import Handlebars-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
@@ -45,26 +49,118 @@
 
 </head>
 
-<body>
+<style>
 
+  /* Navbar container */
+  .navbar {
+    overflow: hidden;
+    background-color: #333;
+    font-family: Arial;
+  }
+
+  /* Links inside the navbar */
+  .navbar a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  /* The dropdown container */
+  .dropdown {
+    float: left;
+    overflow: hidden;
+  }
+
+  /* Dropdown button */
+  .dropdown .dropbtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    /* Important for vertical align on mobile phones */
+    margin: 0;
+    /* Important for vertical align on mobile phones */
+  }
+
+  /* Add a red background color to navbar links on hover */
+  .navbar a:hover,
+  .dropdown:hover .dropbtn {
+    background-color: red;
+  }
+
+  /* Dropdown content (hidden by default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+
+  /* Add a grey background color to dropdown links on hover */
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+</style>
+
+<body>
+  <div class="navbar">
+    <a href="">Home</a>
+    <button class="waves-effect waves-light btn" onclick="random()">Random</button>
+    <button class="waves-effect waves-light btn" onclick="oneperson()">1 Person</button>
+    <button class="waves-effect waves-light btn" onclick="twoperson()">2 Person</button>
+    <button class="waves-effect waves-light btn" onclick="treperson()">3 Person</button>
+    <button class="waves-effect waves-light btn" onclick="fourperson()">4 Person</button>
+    <button class="waves-effect waves-light btn" onclick="fiveperson()">5 Person</button>
+    <button class="waves-effect waves-light btn" onclick="sixperson()">6 Person</button>
+    <button class="waves-effect waves-light btn" onclick="sevenperson()">7 Person</button>
+    <button class="waves-effect waves-light btn" onclick="otteperson()">8 Person</button>
+  </div>
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container" style="margin-top: 3%">
-
     <div class="row">
       <div class="col s12 m6">
-        <h4>What to do?</h4>
+        <h4>Keder du dig?</h4>
         <p>Du keder dig. Men du har ikke overvejet at du kan bruge det fantastiske activity api til at programmere en
           app, som andre i samme situation kan bruge. Til dette lille projekt skal vi bruge:
           <ul>
-              <li><a href="https://www.boredapi.com/">The bored API</a></li>
-              <li><a href="https://handlebarsjs.com/">Handlebars javascript</a></li>
-              <li><a href="https://materializecss.com/">Materialize css</a></li>
+            <li><a href="https://www.boredapi.com/">The bored API</a></li>
+            <li><a href="https://handlebarsjs.com/">Handlebars javascript</a></li>
+            <li><a href="https://materializecss.com/">Materialize css</a></li>
+            <li><a href="https://jquery.com/">jQuery</a></li>
           </ul>
         </p>
       </div>
     </div>
+
     <div id="random-activity">
+    </div>
+
+    <!-- placeholder -->
+    <div id="social-activity">
     </div>
 
   </div>
@@ -77,37 +173,310 @@
   <script id="random-activity-template" type="text/x-handlebars-template">
     <div class="row">
         <div class="col s12 m6">
+          <h5 id="fadeOutRandom">Random activity</h5>
           <div class="card blue-grey darken-1">
             <div class="card-content white-text">
               <span class="card-title">{{type}}</span>
               <p>{{activity}}</p>
             </div>
             <div class="card-action">
-              <a href="#">This is a link</a>
+              <a href="http://www.google.com/search?q={{activity}}">Try your luck</a>
             </div>
           </div>
       </div>
     </div>
 </script>
+  <script id="social-activity-template1" type="text/x-handlebars-template">
+    <div class="row">
+    <div class="col s12 m6">
+        <h5>Activity for one</h5>
+        <div class="card">
+        <div class="card-image">
+          <img src="https://source.unsplash.com/300x300/?{{type}}">
+          <span class="card-title">{{type}}</span>
+        </div>
+        <div class="card-content">
+          <p>{{activity}}</p>
+        </div>
+        <div class="card-action">
+          <a href="http://www.google.com/search?q={{activity}}">Try your luck</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>
+
+<script id="social-activity-template2" type="text/x-handlebars-template">
+  <div class="row">
+  <div class="col s12 m6">
+      <h5>Activity for two</h5>
+      <div class="card">
+      <div class="card-image">
+        <img src="https://source.unsplash.com/300x300/?{{type}}">
+        <span class="card-title">{{type}}</span>
+      </div>
+      <div class="card-content">
+        <p>{{activity}}</p>
+      </div>
+      <div class="card-action">
+        <a href="http://www.google.com/search?q={{activity}}">Try your luck</a>
+      </div>
+    </div>
+  </div>
+</div>
+</script>
+
+<script id="social-activity-template3" type="text/x-handlebars-template">
+  <div class="row">
+  <div class="col s12 m6">
+      <h5>Activity for three</h5>
+      <div class="card">
+      <div class="card-image">
+        <img src="https://source.unsplash.com/300x300/?{{type}}">
+        <span class="card-title">{{type}}</span>
+      </div>
+      <div class="card-content">
+        <p>{{activity}}</p>
+      </div>
+      <div class="card-action">
+        <a href="http://www.google.com/search?q={{activity}}">Try your luck</a>
+      </div>
+    </div>
+  </div>
+</div>
+</script>
+
+<script id="social-activity-template4" type="text/x-handlebars-template">
+  <div class="row">
+  <div class="col s12 m6">
+      <h5>Activity for four</h5>
+      <div class="card">
+      <div class="card-image">
+        <img src="https://source.unsplash.com/300x300/?{{type}}">
+        <span class="card-title">{{type}}</span>
+      </div>
+      <div class="card-content">
+        <p>{{activity}}</p>
+      </div>
+      <div class="card-action">
+        <a href="http://www.google.com/search?q={{activity}}">Try your luck</a>
+      </div>
+    </div>
+  </div>
+</div>
+</script>
+
+<script id="social-activity-template5" type="text/x-handlebars-template">
+  <div class="row">
+  <div class="col s12 m6">
+      <h5>Activity for five</h5>
+      <div class="card">
+      <div class="card-image">
+        <img src="https://source.unsplash.com/300x300/?{{type}}">
+        <span class="card-title">{{type}}</span>
+      </div>
+      <div class="card-content">
+        <p>{{activity}}</p>
+      </div>
+      <div class="card-action">
+        <a href="http://www.google.com/search?q={{activity}}">Try your luck</a>
+      </div>
+    </div>
+  </div>
+</div>
+</script>
+
+<script id="social-activity-template6" type="text/x-handlebars-template">
+  <div class="row">
+  <div class="col s12 m6">
+      <h5>Activity for six</h5>
+      <div class="card">
+      <div class="card-image">
+        <img src="https://source.unsplash.com/300x300/?{{type}}">
+        <span class="card-title">{{type}}</span>
+      </div>
+      <div class="card-content">
+        <p>{{activity}}</p>
+      </div>
+      <div class="card-action">
+        <a href="http://www.google.com/search?q={{activity}}">Try your luck</a>
+      </div>
+    </div>
+  </div>
+</div>
+</script>
+
+<script id="social-activity-template7" type="text/x-handlebars-template">
+  <div class="row">
+  <div class="col s12 m6">
+      <h5>Activity for seven</h5>
+      <div class="card">
+      <div class="card-image">
+        <img src="https://source.unsplash.com/300x300/?{{type}}">
+        <span class="card-title">{{type}}</span>
+      </div>
+      <div class="card-content">
+        <p>{{activity}}</p>
+      </div>
+      <div class="card-action">
+        <a href="http://www.google.com/search?q={{activity}}">Try your luck</a>
+      </div>
+    </div>
+  </div>
+</div>
+</script>
+
+<script id="social-activity-template8" type="text/x-handlebars-template">
+  <div class="row">
+  <div class="col s12 m6">
+      <h5>Activity for eight</h5>
+      <div class="card">
+      <div class="card-image">
+        <img src="https://source.unsplash.com/300x300/?{{type}}">
+        <span class="card-title">{{type}}</span>
+      </div>
+      <div class="card-content">
+        <p>{{activity}}</p>
+      </div>
+      <div class="card-action">
+        <a href="http://www.google.com/search?q={{activity}}">Try your luck</a>
+      </div>
+    </div>
+  </div>
+</div>
+</script>
+
+
 
   <!-- Page functionality
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script>
-    // Setup handlebars
-    var randomActivitySource = document.getElementById("random-activity-template").innerHTML;
-    var randomActivityTemplate = Handlebars.compile(randomActivitySource);
-    var randomActivityPlaceholder = document.getElementById('random-activity');
 
+    function random() {
+      // Setup handlebars
+      var randomActivitySource = document.getElementById("random-activity-template").innerHTML;
+      var randomActivityTemplate = Handlebars.compile(randomActivitySource);
+      var randomActivityPlaceholder = document.getElementById('random-activity');
+      // Get content and handle interaction
+      $.ajax({
+        url: "https://www.boredapi.com/api/activity?activity",
+      }).done(function (data) {
+        console.log(data)
+        randomActivityPlaceholder.innerHTML = randomActivityTemplate(data);
+      });
+      // Setup handlebars
+      // A $( document ).ready() block.
+      $(document).ready(function () {
+        $('#fadeOutRandom').click(function () {
+          $('#random-activity').fadeOut(3000);
+        });
+      });
+    }
 
-    // Get content and handle interaction
-    $.ajax({
-      url: "https://www.boredapi.com/api/activity",
-    }).done(function (data) {
-      console.log(data)
-      randomActivityPlaceholder.innerHTML = randomActivityTemplate(data);
-    });
+    function oneperson() {
+      var socialActivitySource = document.getElementById("social-activity-template1").innerHTML;
+      var socialActivityTemplate = Handlebars.compile(socialActivitySource);
+      var socialActivityPlaceholder = document.getElementById('social-activity');
+      // Get content and handle interaction
+      $.ajax({
+        url: "https://www.boredapi.com/api/activity?participants=1",
+      }).done(function (data) {
+        console.log(data)
+        socialActivityPlaceholder.innerHTML = socialActivityTemplate(data);
+      });
+    }
+
+    function twoperson() {
+      var socialActivitySource = document.getElementById("social-activity-template2").innerHTML;
+      var socialActivityTemplate = Handlebars.compile(socialActivitySource);
+      var socialActivityPlaceholder = document.getElementById('social-activity');
+      // Get content and handle interaction
+      $.ajax({
+        url: "https://www.boredapi.com/api/activity?participants=2",
+      }).done(function (data) {
+        console.log(data)
+        socialActivityPlaceholder.innerHTML = socialActivityTemplate(data);
+      });
+    }
+
+    function treperson() {
+      var socialActivitySource = document.getElementById("social-activity-template3").innerHTML;
+      var socialActivityTemplate = Handlebars.compile(socialActivitySource);
+      var socialActivityPlaceholder = document.getElementById('social-activity');
+      // Get content and handle interaction
+      $.ajax({
+        url: "https://www.boredapi.com/api/activity?participants=3",
+      }).done(function (data) {
+        console.log(data)
+        socialActivityPlaceholder.innerHTML = socialActivityTemplate(data);
+      });
+    }
+
+    function fourperson() {
+      var socialActivitySource = document.getElementById("social-activity-template4").innerHTML;
+      var socialActivityTemplate = Handlebars.compile(socialActivitySource);
+      var socialActivityPlaceholder = document.getElementById('social-activity');
+      // Get content and handle interaction
+      $.ajax({
+        url: "https://www.boredapi.com/api/activity?participants=4",
+      }).done(function (data) {
+        console.log(data)
+        socialActivityPlaceholder.innerHTML = socialActivityTemplate(data);
+      });
+    }
+
+    function fiveperson() {
+      var socialActivitySource = document.getElementById("social-activity-template5").innerHTML;
+      var socialActivityTemplate = Handlebars.compile(socialActivitySource);
+      var socialActivityPlaceholder = document.getElementById('social-activity');
+      // Get content and handle interaction
+      $.ajax({
+        url: "https://www.boredapi.com/api/activity?participants=5",
+      }).done(function (data) {
+        console.log(data)
+        socialActivityPlaceholder.innerHTML = socialActivityTemplate(data);
+      });
+    }
+
+    function sixperson() {
+      var socialActivitySource = document.getElementById("social-activity-template6").innerHTML;
+      var socialActivityTemplate = Handlebars.compile(socialActivitySource);
+      var socialActivityPlaceholder = document.getElementById('social-activity');
+      // Get content and handle interaction
+      $.ajax({
+        url: "https://www.boredapi.com/api/activity?participants=5",
+      }).done(function (data) {
+        console.log(data)
+        socialActivityPlaceholder.innerHTML = socialActivityTemplate(data);
+      });
+    }
+
+    function sevenperson() {
+      var socialActivitySource = document.getElementById("social-activity-template7").innerHTML;
+      var socialActivityTemplate = Handlebars.compile(socialActivitySource);
+      var socialActivityPlaceholder = document.getElementById('social-activity');
+      // Get content and handle interaction
+      $.ajax({
+        url: "https://www.boredapi.com/api/activity?participants=7",
+      }).done(function (data) {
+        console.log(data)
+        socialActivityPlaceholder.innerHTML = socialActivityTemplate(data);
+      });
+    }
+
+    function otteperson() {
+      var socialActivitySource = document.getElementById("social-activity-template8").innerHTML;
+      var socialActivityTemplate = Handlebars.compile(socialActivitySource);
+      var socialActivityPlaceholder = document.getElementById('social-activity');
+      // Get content and handle interaction
+      $.ajax({
+        url: "https://www.boredapi.com/api/activity?participants=8",
+      }).done(function (data) {
+        console.log(data)
+        socialActivityPlaceholder.innerHTML = socialActivityTemplate(data);
+      });
+    }
   </script>
-
 </body>
 
 </html>
@@ -115,15 +484,9 @@
 
 <!-- 
 OPGAVER 
-
-
 I denne øvelse skal vi følge tre grundlæggende trin i mange programmeringsprojekter. 
 For det første skal vi hente noget data, for det andet skal vi formattere det i HTML,
 og til sidst skal vi præsentere det for brugeren med et enkelt layout.   
-
-
 https://source.unsplash.com/400x400/?diy
-
 http://www.google.com/search?q={{activity}}
-
 -->
