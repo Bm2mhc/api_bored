@@ -159,6 +159,8 @@
     <div id="random-activity">
     </div>
 
+    <div id="weather-activity"></div>
+
     <!-- placeholder -->
     <div id="social-activity">
     </div>
@@ -167,6 +169,52 @@
 
   <!-- End Document body
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script id="weather-activity-template" type="text/x-handlebars-template">
+    <div class="row">
+        <div class="col s12 m6">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">Sted</span>
+              <p>{{name}}</p>
+              <p>{{sys.country}}</p>
+              <span class="card-title">Temp</span>
+              <p>{{main.temp}} C</p>
+              <p>{{main.temp_min}} C min - {{main.temp_max}} C max</p>
+              <span class="card-title">Vind</span>
+              <p>{{wind.speed}} mph wind speed</p>
+              <span class="card-title">Sol</span>
+              <p>Sol opgang {{sys.sunrise}} Unix Time</p>
+              <p>Sol nedgang {{sys.sunset}} Unix Time</p>
+              <span class="card-title">Fugtighed</span>
+              <p>{{main.humidity}}%</p>
+              <span class="card-title">Skyer</span>
+              <p>{{clouds.all}} %</p>
+            </div>
+            <div class="card-action">
+              <a href="https://dmi.dk">Link til DMI</a>
+            </div>
+          </div>
+      </div>
+    </div>
+</script>
+  <!-- Page functionality
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script>
+    // Setup handlebars
+    var weatherActivitySource = document.getElementById("weather-activity-template").innerHTML;
+    var weatherActivityTemplate = Handlebars.compile(weatherActivitySource);
+    var weatherActivityPlaceholder = document.getElementById('weather-activity');
+
+
+    // Get content and handle interaction
+    $.ajax({
+      url: "https://api.openweathermap.org/data/2.5/weather?zip=4300,dk&appid=641e769436bd08fa8c6171a8d70ba855&units=metric",
+    }).done(function (data) {
+      console.log(data)
+      weatherActivityPlaceholder.innerHTML = weatherActivityTemplate(data);
+    });
+  </script>
+
 
   <!-- Handlebar templates
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
