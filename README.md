@@ -9,11 +9,16 @@
   <a href="">Eloquent Javascript on asynchronous programming in.. well, javascript</a>
   
 ## Handlebars
-  We also use a js framework called <a href="https://handlebarsjs.com/">handlebars</a>, to ease json formatting. 
+  We also use a js framework called <a href="https://handlebarsjs.com/">handlebars</a>, to ease json formatt ing. 
   
   
   Lastly - and really the reason we use handlebars - we use a rather complex css boilerplate, <a href="https://materializecss.com/cards.html"> called materialize</a>, which gives us some rather cool layouts. 
   
   Hence the total project presents a set of meaningful skills and architecture in frontend web-programming. 
 
-  
+# Mit ekstra
+  Keder du dig nogensinde?
+  Har du lyst til noget sjovt at lave?
+  Så klik ind her
+  Med denne hjemme side kan du se hvad du skal lave med 1,2,3,4,5,6,7 eller 8 personer. 
+  I toppen klikker du enten på random, 1 -, 2 -, 3 -, 4 -, 5 -, 6 -, 7 - eller 8 personer. Hvis du klikker på random først, vil den altid     ligge i toppen af bunkerne. Hvis du der efter klikker på en af de andre kommer de nedunder. Hvis man klikker Home genstarter siden og       den er blank
