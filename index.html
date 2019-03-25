@@ -69,20 +69,24 @@
 </style>
 
 <body>
-  <div class="navbar">
-    <a href="">Home</a>
-    <button class="waves-effect waves-light btn" onclick="random()">Random</button>
-    <button class="waves-effect waves-light btn" onclick="getLocation()">Vejr</button>
-    <button class="waves-effect waves-light btn" onclick="oneperson()">1 Person</button>
-    <button class="waves-effect waves-light btn" onclick="twoperson()">2 Person</button>
-    <button class="waves-effect waves-light btn" onclick="treperson()">3 Person</button>
-    <button class="waves-effect waves-light btn" onclick="fourperson()">4 Person</button>
-    <button class="waves-effect waves-light btn" onclick="fiveperson()">5 Person</button>
-    <button class="waves-effect waves-light btn" onclick="sixperson()">6 Person</button>
-    <button class="waves-effect waves-light btn" onclick="sevenperson()">7 Person</button>
-    <button class="waves-effect waves-light btn" onclick="otteperson()">8 Person</button>
-  </div>
 
+    <nav>
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo">Logo</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <button class="waves-effect waves-light btn" onclick="random()">Random</button>
+            <button class="waves-effect waves-light btn" onclick="getLocation()">Vejr</button>
+            <button class="waves-effect waves-light btn" onclick="oneperson()">1 Person</button>
+            <button class="waves-effect waves-light btn" onclick="twoperson()">2 Person</button>
+            <button class="waves-effect waves-light btn" onclick="treperson()">3 Person</button>
+            <button class="waves-effect waves-light btn" onclick="fourperson()">4 Person</button>
+            <button class="waves-effect waves-light btn" onclick="fiveperson()">5 Person</button>
+            <button class="waves-effect waves-light btn" onclick="sixperson()">6 Person</button>
+            <button class="waves-effect waves-light btn" onclick="sevenperson()">7 Person</button>
+            <button class="waves-effect waves-light btn" onclick="otteperson()">8 Person</button>
+          </ul>
+        </div>
+      </nav>  
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container" style="margin-top: 3%">
@@ -496,6 +500,29 @@ function showPosition(position) {
         socialActivityPlaceholder.innerHTML = socialActivityTemplate(data);
       });
     }
+
+    document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.dropdown-trigger');
+    var instances = M.Dropdown.init(elems, options);
+  });
+
+  // Or with jQuery
+
+  $('.dropdown-trigger').dropdown(); createInfoCard("diy");
+  //Initiate dropdown bar
+  $('.dropdown-trigger').dropdown();
+  //Fetch selected activity and create card
+  $(".activity-listing").click(function () {
+    targetActivity = $(this).attr("listed-activity");
+    $('#random-activity').fadeOut(750, function() {
+    createInfoCard(targetActivity);
+    });
+  });
+
+
+
+
+
   </script>
 </body>
 
