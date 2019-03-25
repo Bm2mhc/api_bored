@@ -174,15 +174,17 @@
         <div class="col s12 m6">
           <div class="card blue-grey darken-1">
             <div class="card-content white-text">
+              <span class="card-title">Vejrt</span>
+              <p>{{weather.0.description}}</p>
               <span class="card-title">Tid og Sted</span>
               <p>{{name}}</p>
               <p>{{sys.country}}</p>
-              <p>{{dt}}
+              <p>{{dt}} Unix Time</p>
               <span class="card-title">Temp</span>
               <p>{{main.temp}} C</p>
               <p>{{main.temp_min}} C min - {{main.temp_max}} C max</p>
               <span class="card-title">Vind</span>
-              <p>{{wind.speed}} mph wind speed</p>
+              <p>{{wind.speed}} m/t vind hastighed</p>
               <span class="card-title">Sol</span>
               <p>Sol opgang {{sys.sunrise}} Unix Time</p>
               <p>Sol nedgang {{sys.sunset}} Unix Time</p>
