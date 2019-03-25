@@ -66,68 +66,13 @@
     padding: 14px 16px;
     text-decoration: none;
   }
-
-  /* The dropdown container */
-  .dropdown {
-    float: left;
-    overflow: hidden;
-  }
-
-  /* Dropdown button */
-  .dropdown .dropbtn {
-    font-size: 16px;
-    border: none;
-    outline: none;
-    color: white;
-    padding: 14px 16px;
-    background-color: inherit;
-    font-family: inherit;
-    /* Important for vertical align on mobile phones */
-    margin: 0;
-    /* Important for vertical align on mobile phones */
-  }
-
-  /* Add a red background color to navbar links on hover */
-  .navbar a:hover,
-  .dropdown:hover .dropbtn {
-    background-color: red;
-  }
-
-  /* Dropdown content (hidden by default) */
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-  }
-
-  /* Links inside the dropdown */
-  .dropdown-content a {
-    float: none;
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-  }
-
-  /* Add a grey background color to dropdown links on hover */
-  .dropdown-content a:hover {
-    background-color: #ddd;
-  }
-
-  /* Show the dropdown menu on hover */
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
 </style>
 
 <body>
   <div class="navbar">
     <a href="">Home</a>
     <button class="waves-effect waves-light btn" onclick="random()">Random</button>
+    <button class="waves-effect waves-light btn" onclick="getLocation()">Vejr</button>
     <button class="waves-effect waves-light btn" onclick="oneperson()">1 Person</button>
     <button class="waves-effect waves-light btn" onclick="twoperson()">2 Person</button>
     <button class="waves-effect waves-light btn" onclick="treperson()">3 Person</button>
@@ -203,21 +148,46 @@
   <!-- Page functionality
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script>
-    // Setup handlebars
-    var weatherActivitySource = document.getElementById("weather-activity-template").innerHTML;
+    
+  </script>
+<p id="demo"></p>
+
+<script>
+var x = document.getElementById("demo");
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+// Setup handlebars
+}
+
+function showPosition(position) {
+  var weatherActivitySource = document.getElementById("weather-activity-template").innerHTML;
     var weatherActivityTemplate = Handlebars.compile(weatherActivitySource);
     var weatherActivityPlaceholder = document.getElementById('weather-activity');
 
 
     // Get content and handle interaction
+
+    let url = "http://api.openweathermap.org/data/2.5/weather?"
+    let lat = "lat="
+    let lat2 = position.coords.latitude
+    let lon = "&lon="
+    let lon2 = position.coords.longitude
+    let key = "&appid=641e769436bd08fa8c6171a8d70ba855&units=metric"
+
     $.ajax({
-      url: "https://api.openweathermap.org/data/2.5/weather?zip=4300,dk&appid=641e769436bd08fa8c6171a8d70ba855&units=metric",
+      url: url + lat + lat2 + lon + lon2+ key
+      //"http://api.openweathermap.org/data/2.5/weather?lat=55.7170688&lon=11.710464&appid=641e769436bd08fa8c6171a8d70ba855&units=metric",
     }).done(function (data) {
       console.log(data)
       weatherActivityPlaceholder.innerHTML = weatherActivityTemplate(data);
     });
-  </script>
-
+}
+</script>
 
   <!-- Handlebar templates
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
