@@ -185,7 +185,7 @@ function showPosition(position) {
     let lat2 = position.coords.latitude
     let lon = "&lon="
     let lon2 = position.coords.longitude
-    let key = "&appid=641e769436bd08fa8c6171a8d70ba855&units=metric,UTC"
+    let key = "&appid=641e769436bd08fa8c6171a8d70ba855&units=metric"
 
     $.ajax({
       url: url + lat + lat2 + lon + lon2+ key
